@@ -22,4 +22,10 @@ void tree_insert(Tree*, int);
 // Check if value is in tree
 int* tree_search(Tree*, int);
 
+// Max value in tree
+int* tree_max(Tree*);
+
+// Min value in tree
+int* tree_min(Tree*);
+
 #endif

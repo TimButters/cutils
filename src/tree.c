@@ -1,6 +1,7 @@
 #include "tree.h"
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 Tree tree_create()
@@ -33,6 +34,7 @@ void tree_insert(Tree* t, int new_value)
         if (n->value > new_value) {
             if (n->left == NULL) {
                 // Insert at leaf
+                new_n->parent = n;
                 n->left = new_n;
                 return;
             } else {
@@ -41,6 +43,7 @@ void tree_insert(Tree* t, int new_value)
         } else {
             if (n->right == NULL) {
                 // Insert at leaf
+                new_n->parent = n;
                 n->right = new_n;
                 return;
             } else {
@@ -54,23 +57,35 @@ int* tree_search(Tree* t, int search_value)
 {
     Node* n = t->root;
 
-    while (true) {
-        if (n->value == search_value) {
-            return &n->value;
-        }
-
+    while (n != NULL && n->value != search_value) {
         if (n->value > search_value) {
-            if (n->left == NULL) {
-                return NULL;
-            }
             n = n->left;
         } else {
-            if (n->right == NULL) {
-                return NULL;
-            }
             n = n->right;
         }
     }
 
-    return NULL;
+    return n == NULL ? NULL : &n->value;
+}
+
+int* tree_max(Tree* t)
+{
+    Node* n = t->root;
+
+    while(n->right != NULL) {
+        n = n->right;
+    }
+
+    return &n->value;
+}
+
+int* tree_min(Tree* t)
+{
+    Node* n = t->root;
+
+    while(n->left != NULL) {
+        n = n->left;
+    }
+
+    return &n->value;
 }

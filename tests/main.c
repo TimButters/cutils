@@ -22,8 +22,11 @@ int main(int argc, char *argv[])
 
     n = tree_search(&tree, 100);
     if (n == NULL) {
-        printf("Not Found\n");
+        printf("Not Found %d\n", 100);
     }
+
+    printf("The minimum value is: %d\n", *tree_min(&tree));
+    printf("The maximum value is: %d\n", *tree_max(&tree));
 
     return 0;
 }

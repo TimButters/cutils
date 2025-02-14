@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -fsanitize=address -Wall -O2 -Iinclude
+CFLAGS = -fsanitize=address -Wall -O2 -Iinclude -g
 BUILDDIR = build
 
 bin/tree: tests/main.c build/tree.o
