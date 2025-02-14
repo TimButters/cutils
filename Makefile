@@ -1,11 +1,12 @@
 CC = gcc
-CFLAGS = -fsanitize=address -Wall -O2
+CFLAGS = -fsanitize=address -Wall -O2 -Iinclude
+BUILDDIR = build
 
-tree: main.c tree.o
-	$(CC) $(CFLAGS) $^ -o tree
+bin/tree: tests/main.c build/tree.o
+	$(CC) $(CFLAGS) $^ -o $@
 
-tree.o: tree.c tree.h
-	$(CC) $(CFLAGS) -c $<
+build/tree.o: src/tree.c include/tree.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f tree.o
+	rm -f build/tree.o
