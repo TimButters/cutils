@@ -208,9 +208,7 @@ int* tree_min(const Tree* t)
 
 void* tree_traverse(const Tree* t)
 {
-    size_t memsize = (t->size + 1) * sizeof t->root->value;
-    printf("Memsize = %zu\n", memsize);
-    int* values = malloc(memsize);
+    int* values = malloc((t->size + 1) * sizeof t->root->value);
     size_t num_values = 0;
 
     tree_inorder_walk(t->root, values, &num_values);
