@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -fsanitize=address -Wall -O2 -Iinclude -g
 BUILDDIR = build
 
-bin/tree: tests/main.c build/tree.o
+bin/cutils: $(wildcard tests/*.c) $(wildcard build/*.o)
 	$(CC) $(CFLAGS) $^ -o $@
 
 build/tree.o: src/tree.c include/tree.h

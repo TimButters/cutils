@@ -70,10 +70,13 @@ int main(int argc, char* argv[])
 
     int* values = tree_traverse(&tree);
     printf("Tree size %u\n\n", tree.size);
+    printf("Elements:\n");
     for (int i = 0; i < tree.size; i++) {
         printf("%d\n", values[i]);
     }
     free(values);
+
+    printf("\nAll done\n");
 
     return 0;
 }
