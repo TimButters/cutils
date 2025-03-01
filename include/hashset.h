@@ -14,7 +14,11 @@ typedef struct HashSet {
     float load_factor;
     size_t table_size;
     void* table;
+    TYPE _type;
 } HashSet;
+
+// The hash function
+size_t _hashset_hash(HashSet*, void*);
 
 // Create a new Hashset instance
 HashSet hashset_create(TYPE);

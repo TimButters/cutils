@@ -1,9 +1,11 @@
 #include "tree.h"
+#include "hashset.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int test_tree()
 {
+    printf("=== Starting Tree Tests ===\n");
     Tree tree = tree_create();
     printf("Tree size = %u\n", tree.size);
 
@@ -76,7 +78,38 @@ int main(int argc, char* argv[])
     }
     free(values);
 
-    printf("\nAll done\n");
+    printf("=== Tree tests all done ===\n\n");
+    return 0;
+}
+
+int test_hashset()
+{
+    printf("=== Starting HashSet Tests ===\n");
+
+    HashSet hashset = hashset_create(INT);
+
+    for (int v = 0; v < 10; v++) {
+        size_t index = _hashset_hash(&hashset, &v);
+        printf("Hashed value is: %zu\n", index);
+    }
+
+    printf("=== HashSet tests all done ===\n\n");
+    
+    return 0;
+}
+
+int main(int argc, char* argv[])
+{
+
+    int tree_result = test_tree();
+    if (tree_result > 0) {
+        printf("Hashset failure\n");
+    }
+
+    int hashset_result = test_hashset();
+    if (hashset_result > 0) {
+        printf("Hashset failure\n");
+    }
 
     return 0;
 }
