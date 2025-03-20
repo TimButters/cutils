@@ -88,9 +88,26 @@ int test_hashset()
 
     HashSet hashset = hashset_create(INT);
 
-    for (int v = 0; v < 10; v++) {
-        size_t index = _hashset_hash(&hashset, &v);
-        printf("Hashed value is: %zu\n", index);
+    int a = 1;
+    hashset_add(&hashset, &a);
+    a = 2;
+    hashset_add(&hashset, &a);
+    a = 3;
+    hashset_add(&hashset, &a);
+
+    for (int i = 0; i < hashset.table_size; i++) {
+        if (hashset.occupied[i]) {
+            printf("%d: %d\n", i, ((int*)hashset.table)[i]);
+        }
+    }
+
+    printf("\nDeleting\n");
+    hashset_delete(&hashset, &a);
+
+    for (int i = 0; i < hashset.table_size; i++) {
+        if (hashset.occupied[i]) {
+            printf("%d: %d\n", i, ((int*)hashset.table)[i]);
+        }
     }
 
     printf("=== HashSet tests all done ===\n\n");
